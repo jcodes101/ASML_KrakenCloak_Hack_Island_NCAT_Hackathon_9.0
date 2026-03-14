@@ -26,14 +26,25 @@ class KrakenProcessor:
 
             mask = np.zeros((h, w), dtype=np.uint8)
 
-            for indices in [range(468, 473), range(473, 478)]:
-                pts = np.array([
-                    [int(landmarks[i].x * w), int(landmarks[i].y * h)]
-                    for i in indices
-                ])
+            # Eye landmark indices
+            left_eye = range(468, 473)
+            right_eye = range(473, 478)
+
+            # Create mask for Kraken cloak
+            for indices in [left_eye, right_eye]:
+                pts = np.array([[int(landmarks[i].x * w), int(landmarks[i].y * h)] for i in indices])
                 cv2.fillPoly(mask, [pts], 255)
 
-            frame = np.where(mask[:, :, None] == 255, self.background, frame)
+            # Apply cloak to a copy of the frame to preserve landmarks overlay
+            cloaked_frame = np.where(mask[:, :, None] == 255, self.background, frame)
+
+            # Draw landmarks on top of the cloaked frame
+            for i in list(left_eye) + list(right_eye):
+                x = int(landmarks[i].x * w)
+                y = int(landmarks[i].y * h)
+                cv2.circle(cloaked_frame, (x, y), 2, (0, 255, 0), -1)
+
+            return cloaked_frame
 
         return frame
 

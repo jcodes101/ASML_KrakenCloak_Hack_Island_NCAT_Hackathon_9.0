@@ -3,7 +3,8 @@ import { useState } from 'react';
 const CAMERA_A_IMG = 'https://lh3.googleusercontent.com/aida-public/AB6AXuAnHvPa5Rx7ZbR5dEuNNugAKRTXF0OND5mK2oD_qSuupyLsaQ1znR3e8moNb8xge9_Fl1WaKayrygjzP8MWoVHKfleThnUnrCTyrfTP5uCcpNFC22kkCIGvZfsdfQ61uNypFp-yvJRbx2s5Ye16_BcpRkb6EcVFkGxWIie7bROvb3aTLuzbsPU_v8z1ja2V3574_VgLsn7-jj-vCDFelTrvRlv2xYnL25KRbvbb484if-9xeDHU_9QCv5GEg5tZND8Q7GjKN7oRg8xc';
 const CAMERA_B_IMG = 'https://lh3.googleusercontent.com/aida-public/AB6AXuAaZHK2ThJBf42rY6uJxFlnP4Pglp859BMwQ7jylLK4wLoxVypZP5zuxNKI8id38s6uOMsFG_u4w7pGIDM_exl6YuxStydwDwoDRUCQmp50KrrARie0hHpI_Lbwj6zJeBQ2zT2kfiQYqnyKgZl7r_gSTwaG4xRtPCLu4poi3-vf9HUmM5dyyextdQYfq32VQZI9D1zcmApJeuVz7aboljORtYlcKK4_tXDKOUmxCrhegHId3RxeQCYlaMepRgDhht-PAohxmbiuSx3V';
 
-const STREAM_A_URL = 'http://127.0.0.1:8000/video_feed'
+const STREAM_A_URL = 'http://127.0.0.1:8000/video_feed_a'
+const STREAM_B_URL = "http://127.0.0.1:8000/video_feed_b"
 
 function Dashboard_Vision() {
   const [viewMode, setViewMode] = useState('split');
@@ -63,7 +64,7 @@ function Dashboard_Vision() {
             </div>
           </div>
           <div className="relative bg-black rounded-lg overflow-hidden group">
-            <img alt="Camera B Feed" className="w-full h-full object-cover opacity-50" src={CAMERA_B_IMG} />
+            <img alt="Camera B Feed" className="w-full h-full object-cover opacity-50" src={STREAM_B_URL} />
             <div className="absolute inset-0 bg-linear-to-b from-black/40 via-transparent to-black/40 pointer-events-none" />
             <div className="absolute top-4 left-4 flex flex-col gap-1">
               <span className="bg-primary text-[10px] text-white px-2 py-0.5 rounded font-bold uppercase">Camera B</span>
