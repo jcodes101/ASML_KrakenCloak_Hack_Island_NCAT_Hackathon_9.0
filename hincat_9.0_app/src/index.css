@@ -1,0 +1,134 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #005EB8;
+  --color-deep-tech: #002F6C;
+  --color-asml-orange: #FF6600;
+  --color-light-accent: #00A3E0;
+  --color-background-light: #F5F7FA;
+  --color-background-dark: #001B3D;
+  --color-neutral-gray: #E2E8F0;
+  --font-display: "Public Sans", sans-serif;
+  --radius: 0.125rem;
+  --radius-lg: 0.25rem;
+  --radius-xl: 0.5rem;
+  --radius-full: 9999px;
+  --font-sans: "Inter", sans-serif;
+}
+
+@keyframes flow-dash {
+  to { stroke-dashoffset: -16; }
+}
+
+/* Infinite pipeline carousel */
+@keyframes pipeline-slide {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Eye-tracking tech animation: pupil moves in a smooth path */
+@keyframes eye-track {
+  0%, 100% { transform: translate(0, 0); opacity: 1; }
+  15% { transform: translate(6px, -4px); opacity: 0.95; }
+  30% { transform: translate(-4px, 4px); opacity: 1; }
+  45% { transform: translate(4px, 6px); opacity: 0.95; }
+  60% { transform: translate(-6px, -2px); opacity: 1; }
+  75% { transform: translate(2px, 4px); opacity: 0.95; }
+}
+@keyframes eye-glow-pulse {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.05); }
+}
+@keyframes eye-scan-line {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+/* Tracker circle: lock-on / capturing tech HUD (circumference ≈ 2*π*44) */
+@keyframes tracker-sweep {
+  0% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: -276; }
+}
+@keyframes tracker-rotate {
+  to { transform: rotate(360deg); }
+}
+@keyframes tracker-ring-pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+@keyframes tracker-lock-in {
+  0% { transform: scale(0.92); opacity: 0.6; }
+  40% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Tracker drifts around the entire card */
+@keyframes tracker-drift {
+  0%, 100% { left: 50%; top: 50%; }
+  12.5% { left: 65%; top: 38%; }
+  25% { left: 72%; top: 52%; }
+  37.5% { left: 58%; top: 68%; }
+  50% { left: 42%; top: 72%; }
+  62.5% { left: 28%; top: 55%; }
+  75% { left: 32%; top: 38%; }
+  87.5% { left: 45%; top: 48%; }
+}
+
+/* Loading bar: endless buffer (load up, dip, load more, dip, etc.) */
+@keyframes buffer-load {
+  0%, 100% { width: 18%; }
+  8% { width: 42%; }
+  18% { width: 65%; }
+  25% { width: 35%; }
+  35% { width: 55%; }
+  45% { width: 78%; }
+  52% { width: 28%; }
+  62% { width: 48%; }
+  72% { width: 72%; }
+  82% { width: 40%; }
+  92% { width: 58%; }
+}
+
+/* Loader transition (grid lines animation) */
+.loader {
+  width: 50px;
+  aspect-ratio: 1;
+  display: grid;
+}
+.loader::before,
+.loader::after {
+  content: "";
+  grid-area: 1 / 1;
+  margin: 0 0 15px 15px;
+  --c: #0000 calc(100% / 3), var(--color-primary) 0 calc(2 * 100% / 3), #0000 0;
+  --c1: linear-gradient(90deg, var(--c));
+  --c2: linear-gradient(0deg, var(--c));
+  background: var(--c1), var(--c2), var(--c1), var(--c2);
+  background-size: 300% 4px, 4px 300%;
+  background-repeat: no-repeat;
+  animation: l12 1s infinite linear;
+}
+.loader::after {
+  margin: 15px 15px 0 0;
+  transform: scale(-1, -1);
+}
+@keyframes l12 {
+  0% {
+    background-position: 50% 0, 100% 100%, 0 100%, 0 0;
+  }
+  25% {
+    background-position: 0 0, 100% 50%, 0 100%, 0 0;
+  }
+  50% {
+    background-position: 0 0, 100% 0, 50% 100%, 0 0;
+  }
+  75% {
+    background-position: 0 0, 100% 0, 100% 100%, 0 50%;
+  }
+  75.01% {
+    background-position: 100% 0, 100% 0, 100% 100%, 0 50%;
+  }
+  100% {
+    background-position: 50% 0, 100% 0, 100% 100%, 0 100%;
+  }
+}
