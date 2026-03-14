@@ -2,7 +2,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { PiEyeThin } from 'react-icons/pi';
 import { useNavigation } from '../../context/NavigationContext';
 import DecryptedText from '../DecryptedText';
-import asmlVid from '../../assets/asml_vid_2.mp4';
+// Video: set VITE_HERO_VIDEO_URL in Vercel for production. Local dev: put asml_vid_2.mp4 in public/
+const HERO_VIDEO_URL = import.meta.env.VITE_HERO_VIDEO_URL || '/asml_vid_2.mp4';
 
 const LOADER_DURATION_MS = 700;
 const LOADER_HIDE_AFTER_NAV_MS = 400;
@@ -23,16 +24,18 @@ function Hero_Section() {
   return (
     <section className="relative w-full pt-4">
       {/* Full-bleed video background — edge to edge, no container */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-screen h-full min-h-full object-cover pointer-events-none"
-        aria-hidden
-      >
-        <source src={asmlVid} type="video/mp4" />
-      </video>
+      {HERO_VIDEO_URL && (
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-screen h-full min-h-full object-cover pointer-events-none"
+          aria-hidden
+        >
+          <source src={HERO_VIDEO_URL} type="video/mp4" />
+        </video>
+      )}
       <div className="absolute inset-0 bg-background-light/85 dark:bg-background-dark/45 pointer-events-none" aria-hidden />
       {/* Graph-line grid overlay (ASML-style) — light mode */}
       <div
